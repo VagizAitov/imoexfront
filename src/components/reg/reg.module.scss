@@ -1,0 +1,93 @@
+.regForm {
+    display: grid;
+    margin-top: 52px;
+    grid-template-rows: 30px 41px 41px 41px;
+    grid-gap: 17px;
+    height: 100%;
+    width: 254px;
+    img {
+        margin-left: 40%;
+        transform: translateY(-10px);
+    }
+    button {
+        border-radius: 16px;
+        background: #565656;
+        border: none;
+        font-family: 'Gilroy-bold';
+        font-size: 13.75px;
+        font-weight: 700;
+        line-height: 11.3px;
+        text-align: center;
+        color: #FCFCFC;
+
+    }
+    button:hover {
+        cursor: pointer;
+    }
+    button:active {
+        background-color: grey;
+    }
+    input {
+        position: relative;
+        padding: 10px;
+        border-radius: 16px;
+        border: 1.37px solid #C7C7C7;
+        font-family: 'Gilroy-bold';
+        font-size: 13.75px;
+        font-weight: 700;
+        line-height: 11.3px;
+        text-align: center;
+        color: #B8B8B8;
+
+    }
+    input:focus {
+        outline: none;
+    }
+    input:focus::placeholder {
+        color: transparent;
+    }
+}
+.wrapper {
+    background-color: white;
+    display: grid;
+    width: 367px;
+    height: 506px;
+    justify-content: center;
+    margin-top: 225px;
+    border-radius: 46px;
+    box-shadow: 0px 0px 16px 5px rgba(34, 60, 80, 0.51);
+}
+
+.main {
+    display: grid;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(./../../../public/background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.haveAcc {
+    display: grid;
+    align-content: end;
+    color: black;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    font-size: 15px;
+    margin-bottom: 40%;
+    p {
+        font-family: Gilroy-bold;
+        font-size: 13.75px;
+        font-weight: 700;
+        line-height: 11.3px;
+        text-align: center;
+    }
+    button {
+        margin-top: 16px;
+        width: 100%;
+        height: 41px;
+        background-color: white;
+        color: #B8B8B8;
+        border: 1.37px solid #C7C7C7
+    }
+}

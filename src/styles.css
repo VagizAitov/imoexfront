@@ -1,0 +1,14 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.dark {
+    --primary: rgb(56, 56, 56);
+    --accent: rgb(66, 133, 120);
+}
+
+.light {
+    --primary: white;
+    --accent: rgb(66, 133, 120);
+}

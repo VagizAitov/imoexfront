@@ -1,0 +1,122 @@
+.wrapper {
+  height: 80vh;
+  padding-top: 100px;
+  width: 100vw;
+  grid-template-rows: 1fr;
+  grid-template-columns: 70%;
+  display: grid;
+  justify-content: center;
+}
+.main {
+  display: grid;
+  grid-template-rows: 170px 100px 50px 1fr;
+  grid-gap: 10px;
+  .infoBox {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 130px 1fr;
+    border: 2px solid #d9d9d9;
+    border-radius: 13px;
+    width: 100%;
+    .pp {
+      height: 90px;
+      width: 90px;
+      border-radius: 13px;
+      margin-left: 20px;
+    }
+    .info {
+      .id {
+        font-family: Gilroy-medium;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 24.66px;
+        color: #d9d9d9;
+      }
+      .name {
+        font-family: Gilroy-bold;
+        font-size: 25px;
+        font-weight: 600;
+        line-height: 24.66px;
+        color: #464646;
+      }
+    }
+  }
+  .incomeStats {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+    .statName {
+      font-family: Gilroy-bold;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 24.66px;
+      color: #464646;
+    }
+    .statInfo {
+      font-family: Gilroy-medium;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 24.66px;
+      color: #7a7a7a;
+    }
+    .cost {
+      display: grid;
+      grid-gap: 5px;
+      align-content: center;
+      padding: 10px;
+      border: 2px solid #d9d9d9;
+      border-radius: 13px;
+    }
+    .income {
+      display: grid;
+      grid-gap: 5px;
+      align-content: center;
+      padding: 10px;
+      border: 2px solid #d9d9d9;
+      border-radius: 13px;
+    }
+    .incomePercent {
+      display: grid;
+      grid-gap: 5px;
+      align-content: center;
+      padding: 10px;
+      border: 2px solid #d9d9d9;
+      border-radius: 13px;
+    }
+  }
+  .sharesOrBonds {
+    display: flex;
+    a {
+      font-family: Gilroy-bold;
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 24.66px;
+      color: #464646;
+    }
+    a:hover {
+      cursor: pointer;
+    }
+    .curr {
+      border-bottom: 2px solid #464646;
+    }
+  }
+  .alldata {
+    ul {
+      li {
+        display: grid;
+        align-content: center;
+        grid-template-columns: 500px 1fr 1fr 1fr 1fr 1fr;
+        border-bottom: 1px solid #e6e6e6;
+        height: 36px;
+        p {
+          font-family: Gilroy-light;
+          font-size: 17px;
+          font-weight: 400;
+          line-height: 13.97px;
+          color: #464646;
+        }
+      }
+    }
+  }
+}

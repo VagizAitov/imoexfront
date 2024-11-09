@@ -1,0 +1,79 @@
+.wrapper {
+  background-color: white;
+  position: fixed;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  grid-template-columns: 70vw;
+  grid-template-rows: 1fr;
+  width: 100vw;
+  height: 75px;
+  z-index: 4;
+}
+.underline {
+  display: grid;
+  grid-template-columns: 80%;
+  grid-template-rows: 100%;
+  justify-content: center;
+  align-content: center;
+  border-bottom: 2px solid #d9d9d9;
+}
+
+.navbar {
+  height: 100%;
+  display: grid;
+  background: white;
+  grid-template-columns: 100px 1fr 100px;
+  list-style-type: none;
+  justify-content: center;
+  align-content: center;
+  z-index: 3;
+  ul {
+    width: 100%;
+    height: 100%;
+    list-style-type: none;
+    display: flex;
+  }
+  li {
+    width: 100%;
+    input {
+      width: 30%;
+      min-width: 70px;
+      border: 1.37px solid #c7c7c7;
+      height: 38px;
+      top: 18px;
+      left: 607px;
+      gap: 0px;
+      border-radius: 15.12px;
+      border: 1.37px 0px 0px 0px;
+      opacity: 0px;
+      padding-left: 10px;
+      transform: translateY(-11px);
+      font-family: Gilroy-light;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 16.44px;
+    }
+    input:focus {
+      outline: none;
+    }
+    a.main {
+      font-family: "Gilroy-bold";
+      color: #464646 !important;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 16.44px;
+      text-align: center;
+    }
+    a.login {
+      font-family: "Gilroy-medium";
+      color: #979797 !important;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 16.44px;
+      text-align: center;
+    }
+  }
+}

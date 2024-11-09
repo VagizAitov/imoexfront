@@ -1,0 +1,50 @@
+.liked {
+    background-color: red;
+    border: none;
+    padding: 3px;
+    border-radius: 5px;
+    border: solid 2px rgb(66, 133, 120);
+    color: white;
+}
+.notLiked {
+    background-color: white;
+    border: none;
+    padding: 3px;
+    border-radius: 5px;
+    border: solid 2px rgb(66, 133, 120);
+}
+.notLiked:hover {
+    cursor: pointer;
+    border: solid 2px grey;
+}
+.liked:hover {
+    cursor: pointer;
+}
+.main {
+    padding-top: 100px;
+    justify-content: center;
+    display: flex;
+}
+.wrapper {
+    display: grid;
+    background-color: rgb(66, 133, 120);
+    border-radius: 15px;
+    width: 400px;
+    padding: 15px;
+    ul {
+        list-style-type: none;
+    }
+}
+
+.title {
+    font-weight: 600;
+    font-size: 18px;
+    color: white !important;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+}
+.text {
+    color: white !important;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+}

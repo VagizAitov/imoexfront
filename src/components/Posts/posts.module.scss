@@ -1,0 +1,39 @@
+.main {
+    padding-top: 100px;
+    justify-content: center;
+    display: grid;
+}
+.postsContainer {
+    display: grid;
+    grid-gap: 10px;
+    list-style-type: none;
+}
+.wrapper {
+    background-color: rgb(66, 133, 120);
+    padding: 15px;
+    width: 400px;
+    border-radius: 15px;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 18px;
+    color: white !important;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    a {
+        text-decoration: none;
+        color: white !important;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+    a:visited {
+        color: white !important;
+    }
+}
+.text {
+    color: white !important;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+}

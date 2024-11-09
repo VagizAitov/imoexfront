@@ -1,0 +1,31 @@
+button {
+    border: none;
+    background: transparent;
+}
+li {
+    padding-left: 25px;
+    list-style-type: none;
+}
+.current {
+    border-bottom: 1px solid black;
+    color: black;
+    font-family: Gilroy-light;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 16.44px;
+    text-align: center;
+
+}
+.others {
+    color: #A6A6A6;
+    font-size: 20px;
+    font-family: Gilroy-light;
+    font-weight: 400;
+    line-height: 16.44px;
+    text-align: center;
+
+}
+
+button:hover {
+    cursor: pointer;
+}
