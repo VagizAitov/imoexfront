@@ -9,9 +9,7 @@ export default function Reg() {
     if (localStorage.getItem("jwt") != null) {
       axios
         .get(
-          `http://45.153.191.4:8082/jwtCheck?token=${localStorage.getItem(
-            "jwt"
-          )}`
+          `http://localhost:8082/jwtCheck?token=${localStorage.getItem("jwt")}`
         )
         .then((res) => {
           if (res.data) {
@@ -26,13 +24,13 @@ export default function Reg() {
   const [resp, setResp] = useState(false);
 
   const submit = () => {
-    axios.get(`http://45.153.191.4:8082/users/${login}`).then((res) => {
+    axios.get(`http://localhost:8082/users/${login}`).then((res) => {
       console.log(res.data);
       if (res.data.length == 1) {
         console.log(234);
         const id = Date.now();
         axios
-          .post("http://45.153.191.4:8082/users", {
+          .post("http://localhost:8082/users", {
             id: id,
             pass: pass,
             login: login,
@@ -42,7 +40,7 @@ export default function Reg() {
             console.log(res);
             axios
               .get(
-                `http://45.153.191.4:8082/getToken?id=${id}&login=${login}&pass=${pass}`
+                `http://localhost:8082/getToken?id=${id}&login=${login}&pass=${pass}`
               )
               .then((res) => localStorage.setItem("jwt", res.data));
           })

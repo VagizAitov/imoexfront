@@ -12,9 +12,7 @@ export default function Login() {
     if (localStorage.getItem("jwt") != null) {
       axios
         .get(
-          `http://45.153.191.4:8082/jwtCheck?token=${localStorage.getItem(
-            "jwt"
-          )}`
+          `http://localhost:8082/jwtCheck?token=${localStorage.getItem("jwt")}`
         )
         .then((res) => {
           if (res.data) {
@@ -29,7 +27,7 @@ export default function Login() {
 
   const submit = () => {
     axios
-      .get(`http://45.153.191.4:8082/users/${login}`)
+      .get(`http://localhost:8082/users/${login}`)
       .then((res) => {
         if (res.data.length < 2) {
           alert("Неверный логин или пароль");

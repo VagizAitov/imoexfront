@@ -8,6 +8,9 @@ import AddPost from "./components/Posts/addPost/AddPost";
 import Posts from "./components/Posts/Posts";
 import Post from "./components/Posts/post/Post";
 import RouteTo from "./components/route/RouteTo";
+import BondPage from "./components/shareBondPage/BondPage";
+import SharePage from "./components/shareBondPage/SharePage";
+
 function App() {
   return (
     <Routes>
@@ -20,6 +23,8 @@ function App() {
       <Route path="/" element={<RouteTo />} />
       <Route path="/main/shares/:page" element={<Main />} />
       <Route path="/main/bonds/:page" element={<Main />} />
+      <Route path="/share/:idshare" element={<SharePage />} />
+      <Route path="/bond/:idbond" element={<BondPage />} />
     </Routes>
   );
 }

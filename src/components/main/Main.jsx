@@ -34,7 +34,7 @@ export default function Main() {
   const like = (idshare, price) => {
     if (sharesOrBonds) {
       axios
-        .post("http://45.153.191.4:8082/likedSharesById", {
+        .post("http://localhost:8082/likedSharesById", {
           iduser:
             localStorage.getItem("token") == ""
               ? ""
@@ -46,22 +46,19 @@ export default function Main() {
           if (res.data.Message) {
             axios
               .delete(
-                `http://45.153.191.4:8082/likedSharesByIdShare?idshare=${idshare}`
+                `http://localhost:8082/likedSharesByIdShare?idshare=${idshare}`
               )
               .then((res) => {
                 console.log(res);
               })
               .catch((err) => console.log(err));
-            window.location.reload();
-          } else {
-            window.location.reload();
           }
         })
         .catch((err) => console.log(err));
     } else {
       console.log("Тут");
       axios
-        .post("http://45.153.191.4:8082/likedBondsById", {
+        .post("http://localhost:8082/likedBondsById", {
           iduser:
             localStorage.getItem("token") == ""
               ? ""
@@ -74,15 +71,12 @@ export default function Main() {
           if (res.data.Message) {
             axios
               .delete(
-                `http://45.153.191.4:8082/likedBondsByIdBond?idbond=${idshare}`
+                `http://localhost:8082/likedBondsByIdBond?idbond=${idshare}`
               )
               .then((res) => {
                 console.log(res);
               })
               .catch((err) => console.log(err));
-            window.location.reload();
-          } else {
-            window.location.reload();
           }
         })
         .catch((err) => console.log(err));
@@ -92,7 +86,7 @@ export default function Main() {
   useEffect(() => {
     axios
       .get(
-        `http://45.153.191.4:8082/jwtCheck?token=${localStorage.getItem("jwt")}`
+        `http://localhost:8082/jwtCheck?token=${localStorage.getItem("jwt")}`
       )
       .then((res) => {
         if (!res.data) {
@@ -103,7 +97,7 @@ export default function Main() {
     if (sharesOrBonds) {
       axios
         .get(
-          `http://45.153.191.4:8082/likedSharesById?iduser=${
+          `http://localhost:8082/likedSharesById?iduser=${
             localStorage.getItem("token") == ""
               ? ""
               : JSON.parse(localStorage.getItem("token")).id
@@ -119,7 +113,7 @@ export default function Main() {
     } else {
       axios
         .get(
-          `http://45.153.191.4:8082/likedBondsById?iduser=${
+          `http://localhost:8082/likedBondsById?iduser=${
             localStorage.getItem("token") == ""
               ? ""
               : JSON.parse(localStorage.getItem("token")).id
@@ -137,54 +131,52 @@ export default function Main() {
     }
 
     if (sharesOrBonds) {
-      axios.get(`http://45.153.191.4:8082/shares-count`).then((res) => {
+      axios.get(`http://localhost:8082/shares-count`).then((res) => {
         setCount(res.data[0].count);
         setCountPages(Math.ceil(res.data[0].count / 13));
       });
       axios
         .get(
-          `http://45.153.191.4:8082/shares?limit=13&page=${
+          `http://localhost:8082/shares?limit=13&page=${
             currentPage - 1
           }&d=1&by=LAST`
         )
         .then((res) => setPage(res.data));
 
       axios
-        .get(`http://45.153.191.4:8082/shares?limit=7&page=0&d=1&by=diff`)
+        .get(`http://localhost:8082/shares?limit=7&page=0&d=1&by=diff`)
         .then((res) => setDayUpgrades(res.data));
       axios
-        .get(`http://45.153.191.4:8082/shares?limit=7&page=0&d=0&by=diff`)
+        .get(`http://localhost:8082/shares?limit=7&page=0&d=0&by=diff`)
         .then((res) => setDayDowngrades(res.data));
     } else {
-      axios.get(`http://45.153.191.4:8082/bonds-count`).then((res) => {
+      axios.get(`http://localhost:8082/bonds-count`).then((res) => {
         setCount(res.data[0].count);
         setCountPages(Math.ceil(res.data[0].count / 13));
       });
       axios
         .get(
-          `http://45.153.191.4:8082/bonds?limit=13&page=${
+          `http://localhost:8082/bonds?limit=13&page=${
             currentPage - 1
           }&d=1&by=LAST`
         )
         .then((res) => setPage(res.data));
       axios
-        .get(`http://45.153.191.4:8082/bonds?limit=7&page=0&d=1&by=diff`)
+        .get(`http://localhost:8082/bonds?limit=7&page=0&d=1&by=diff`)
         .then((res) => setDayUpgrades(res.data));
       axios
-        .get(`http://45.153.191.4:8082/bonds?limit=7&page=0&d=0&by=diff`)
+        .get(`http://localhost:8082/bonds?limit=7&page=0&d=0&by=diff`)
         .then((res) => setDayDowngrades(res.data));
     }
   }, []);
 
   const changePageShares = (page) => {
     axios
-      .get(
-        `http://45.153.191.4:8082/shares?limit=13&page=${page - 1}&d=1&by=LAST`
-      )
+      .get(`http://localhost:8082/shares?limit=13&page=${page - 1}&d=1&by=LAST`)
       .then((res) => setPage(res.data));
     axios
       .get(
-        `http://45.153.191.4:8082/likedSharesById?iduser=${
+        `http://localhost:8082/likedSharesById?iduser=${
           localStorage.getItem("token") == ""
             ? ""
             : JSON.parse(localStorage.getItem("token")).id
@@ -201,13 +193,11 @@ export default function Main() {
 
   const changePageBonds = (page) => {
     axios
-      .get(
-        `http://45.153.191.4:8082/bonds?limit=13&page=${page - 1}&d=1&by=LAST`
-      )
+      .get(`http://localhost:8082/bonds?limit=13&page=${page - 1}&d=1&by=LAST`)
       .then((res) => setPage(res.data));
     axios
       .get(
-        `http://45.153.191.4:8082/likedBondsById?iduser=${
+        `http://localhost:8082/likedBondsById?iduser=${
           localStorage.getItem("token") == ""
             ? ""
             : JSON.parse(localStorage.getItem("token")).id
@@ -223,29 +213,29 @@ export default function Main() {
   };
   const changeToShares = () => {
     setCurrentPage(1);
-    axios.get(`http://45.153.191.4:8082/shares-count`).then((res) => {
+    axios.get(`http://localhost:8082/shares-count`).then((res) => {
       setCount(res.data[0].count);
       setCountPages(Math.ceil(res.data[0].count / 13));
     });
     axios
       .get(
-        `http://45.153.191.4:8082/shares?limit=13&page=${
+        `http://localhost:8082/shares?limit=13&page=${
           currentPage - 1
         }&d=1&by=LAST`
       )
       .then((res) => setPage(res.data));
     axios
-      .get(`http://45.153.191.4:8082/shares?limit=7&page=0&d=1&by=diff`)
+      .get(`http://localhost:8082/shares?limit=7&page=0&d=1&by=diff`)
       .then((res) => setDayUpgrades(res.data));
     axios
-      .get(`http://45.153.191.4:8082/shares?limit=7&page=0&d=0&by=diff`)
+      .get(`http://localhost:8082/shares?limit=7&page=0&d=0&by=diff`)
       .then((res) => setDayDowngrades(res.data));
     changePageShares(1);
   };
   const changeToBonds = () => {
     axios
       .get(
-        `http://45.153.191.4:8082/likedBondsById?iduser=${
+        `http://localhost:8082/likedBondsById?iduser=${
           localStorage.getItem("token") == ""
             ? ""
             : JSON.parse(localStorage.getItem("token")).id
@@ -261,22 +251,22 @@ export default function Main() {
         setLikedShares(tempArr);
       });
     setCurrentPage(1);
-    axios.get(`http://45.153.191.4:8082/bonds-count`).then((res) => {
+    axios.get(`http://localhost:8082/bonds-count`).then((res) => {
       setCount(res.data[0].count);
       setCountPages(Math.ceil(res.data[0].count / 13));
     });
     axios
       .get(
-        `http://45.153.191.4:8082/bonds?limit=13&page=${
+        `http://localhost:8082/bonds?limit=13&page=${
           currentPage - 1
         }&d=1&by=LAST`
       )
       .then((res) => setPage(res.data));
     axios
-      .get(`http://45.153.191.4:8082/bonds?limit=7&page=0&d=1&by=diff`)
+      .get(`http://localhost:8082/bonds?limit=7&page=0&d=1&by=diff`)
       .then((res) => setDayUpgrades(res.data));
     axios
-      .get(`http://45.153.191.4:8082/bonds?limit=7&page=0&d=0&by=diff`)
+      .get(`http://localhost:8082/bonds?limit=7&page=0&d=0&by=diff`)
       .then((res) => setDayDowngrades(res.data));
     changePageBonds(1);
   };
@@ -419,11 +409,16 @@ export default function Main() {
                 style={{ listStyleType: "none", height: "35px" }}
               >
                 <p>Название</p>
-                <p>Посл.</p>
-                Макс.
-                <p>Мин.</p>
-                <p>Изм.</p>
-                <p>Изм. %</p>
+                <p>Посл. цена</p>
+                <p>Макс. цена</p>
+                <p>Мин. цена</p>
+                <p>Цена открытия</p>
+                <a title="Изменение цены относительно цены открытия в рублях (Посл. цена - Цена открытия = Изм.)">
+                  Изм.
+                </a>
+                <a title="Изменение цены относительно цены открытия в процентах ((Посл. цена / Цена открытия - 1)*100 = Изм. %)">
+                  Изм. %
+                </a>
               </li>
               {page == undefined ? (
                 <p>Loading...</p>
@@ -453,15 +448,28 @@ export default function Main() {
                           }
                         }}
                       ></button>
-                      <p style={{ paddingLeft: "5px" }}>{share.SHORTNAME}</p>
+                      <p style={{ paddingLeft: "5px" }}>
+                        <a
+                          onClick={() =>
+                            nav(
+                              `${sharesOrBonds ? "/share" : "/bond"}/${
+                                share.id
+                              }`
+                            )
+                          }
+                        >
+                          {share.SHORTNAME}
+                        </a>
+                      </p>
                     </div>
-                    <p>{share.LAST}</p>
-                    <p>{share.HIGH}</p>
-                    <p>{share.LOW}</p>
+                    <p>{share.LAST} р.</p>
+                    <p>{share.HIGH} р.</p>
+                    <p>{share.LOW} р.</p>
+                    <p>{share.OPEN} р.</p>
                     {share.diffRubles < 0 ? (
-                      <p style={{ color: "#D8261A" }}>{share.diffRubles}</p>
+                      <p style={{ color: "#D8261A" }}>{share.diffRubles} р.</p>
                     ) : (
-                      <p style={{ color: "#05B954" }}>+{share.diffRubles}</p>
+                      <p style={{ color: "#05B954" }}>+{share.diffRubles} р.</p>
                     )}
                     {share.diffPercent < 0 ? (
                       <p style={{ color: "#D8261A" }}>{share.diffPercent}%</p>

@@ -23,7 +23,7 @@ export default function Profile() {
   useEffect(() => {
     axios
       .get(
-        `http://45.153.191.4:8082/jwtCheck?token=${localStorage.getItem("jwt")}`
+        `http://localhost:8082/jwtCheck?token=${localStorage.getItem("jwt")}`
       )
       .then((res) => {
         if (!res.data) {
@@ -32,19 +32,17 @@ export default function Profile() {
       });
     setLiked([]);
     axios
-      .get(`http://45.153.191.4:8082/usersById?id=${params.id}`)
+      .get(`http://localhost:8082/usersById?id=${params.id}`)
       .then((res) => setUser(res.data));
     if (sharesOrBonds == "shares") {
       axios
-        .get(`http://45.153.191.4:8082/likedSharesById?iduser=${params.id}`)
+        .get(`http://localhost:8082/likedSharesById?iduser=${params.id}`)
         .then((res) => {
           setLengthArr(res.data.length);
           for (let i = 0; i < res.data.length; i++) {
             setLiked((liked) => [...liked, res.data[i].price / 2]);
             axios
-              .get(
-                `http://45.153.191.4:8082/sharesById?id=${res.data[i].idshare}`
-              )
+              .get(`http://localhost:8082/sharesById?id=${res.data[i].idshare}`)
               .then((res) => {
                 setData((data) => [...data, res.data[0]]);
                 setCost((cost) => cost + res.data[0].LAST / 2);
@@ -53,16 +51,16 @@ export default function Profile() {
         });
     } else {
       axios
-        .get(`http://45.153.191.4:8082/likedBondsById?iduser=${params.id}`)
+        .get(`http://localhost:8082/likedBondsById?iduser=${params.id}`)
         .then((res) => {
           axios
-            .get(`http://45.153.191.4:8082/bondsById?id=${params.id}`)
+            .get(`http://localhost:8082/bondsById?id=${params.id}`)
             .then((res) => {
               for (let i = 0; i < res.data.length; i++) {
                 setLiked((liked) => [...liked, res.data[i].price / 2]);
                 axios
                   .get(
-                    `http://45.153.191.4:8082/bondsById?id=${res.data[i].idbond}`
+                    `http://localhost:8082/bondsById?id=${res.data[i].idbond}`
                   )
                   .then((res) => {
                     setData((data) => [...data, res.data[0]]);
@@ -80,15 +78,13 @@ export default function Profile() {
     setData([]);
     if (isShares == "shares") {
       axios
-        .get(`http://45.153.191.4:8082/likedSharesById?iduser=${params.id}`)
+        .get(`http://localhost:8082/likedSharesById?iduser=${params.id}`)
         .then((res) => {
           setLengthArr(res.data.length);
           for (let i = 0; i < res.data.length; i++) {
             setLiked((liked) => [...liked, res.data[i].price]);
             axios
-              .get(
-                `http://45.153.191.4:8082/sharesById?id=${res.data[i].idshare}`
-              )
+              .get(`http://localhost:8082/sharesById?id=${res.data[i].idshare}`)
               .then((res) => {
                 setData((data) => [...data, res.data[0]]);
                 setCost((cost) => cost + res.data[0].LAST);
@@ -97,16 +93,14 @@ export default function Profile() {
         });
     } else {
       axios
-        .get(`http://45.153.191.4:8082/likedBondsById?iduser=${params.id}`)
+        .get(`http://localhost:8082/likedBondsById?iduser=${params.id}`)
         .then((res) => {
           setLengthArr(res.data.length);
 
           for (let i = 0; i < res.data.length; i++) {
             setLiked((liked) => [...liked, res.data[i].price]);
             axios
-              .get(
-                `http://45.153.191.4:8082/bondsById?id=${res.data[i].idbond}`
-              )
+              .get(`http://localhost:8082/bondsById?id=${res.data[i].idbond}`)
               .then((res) => {
                 setData((data) => [...data, res.data[0]]);
                 setCost((cost) => cost + res.data[0].LAST);
@@ -203,7 +197,19 @@ export default function Profile() {
               </li>
               {data.slice(0, lengthArr).map((obj) => (
                 <li key={obj.id}>
-                  <p>{obj.SHORTNAME}</p>
+                  <p>
+                    <a
+                      onClick={() =>
+                        nav(
+                          `${sharesOrBonds == "shares" ? "/share" : "/bond"}/${
+                            obj.id
+                          }`
+                        )
+                      }
+                    >
+                      {obj.SHORTNAME}
+                    </a>
+                  </p>
                   <p>{obj.LAST}</p>
                   <p>{obj.HIGH}</p>
                   <p>{obj.LOW}</p>
