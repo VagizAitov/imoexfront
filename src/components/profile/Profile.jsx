@@ -19,6 +19,7 @@ export default function Profile() {
   const [page, setPage] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const paintedPages = [];
+  const [change, setChange] = useState(0);
 
   useEffect(() => {
     axios
@@ -109,6 +110,24 @@ export default function Profile() {
         });
     }
   };
+  const dislike = (idshare) => {
+    if (sharesOrBonds == "shares") {
+      axios
+        .delete(`http://localhost:8082/likedSharesByIdShare?idshare=${idshare}`)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => console.log(err));
+    } else {
+      axios
+        .delete(`http://localhost:8082/likedBondsByIdBond?idbond=${idshare}`)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => console.log(err));
+    }
+    window.location.reload();
+  };
 
   const sum = (arr) => {
     let sum = 0;
@@ -197,19 +216,32 @@ export default function Profile() {
               </li>
               {data.slice(0, lengthArr).map((obj) => (
                 <li key={obj.id}>
-                  <p>
-                    <a
-                      onClick={() =>
-                        nav(
-                          `${sharesOrBonds == "shares" ? "/share" : "/bond"}/${
-                            obj.id
-                          }`
-                        )
-                      }
-                    >
-                      {obj.SHORTNAME}
-                    </a>
-                  </p>
+                  <div style={{ display: "flex" }}>
+                    <button
+                      className={classes.liked}
+                      onClick={(event) => {
+                        dislike(obj.id);
+                        if (event.target.className == classes.liked) {
+                          event.target.className = classes.notLiked;
+                        } else {
+                          event.target.className = classes.liked;
+                        }
+                      }}
+                    ></button>
+                    <p style={{ paddingLeft: "5px" }}>
+                      <a
+                        onClick={() =>
+                          nav(
+                            `${
+                              sharesOrBonds == "shares" ? "/share" : "/bond"
+                            }/${obj.id}`
+                          )
+                        }
+                      >
+                        {obj.SHORTNAME}
+                      </a>
+                    </p>
+                  </div>
                   <p>{obj.LAST}</p>
                   <p>{obj.HIGH}</p>
                   <p>{obj.LOW}</p>
